@@ -1,3 +1,4 @@
+# for test
 FROM --platform=${TARGETPLATFORM:-linux/amd64} golang:alpine as builder
 
 ARG BUILD_DATE
