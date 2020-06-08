@@ -25,7 +25,7 @@ RUN git clone https://github.com/felixonmars/dnsmasq-china-list.git /tmp/dnsmasq
 
 FROM --platform=${TARGETPLATFORM:-linux/amd64} alpine:latest
 
-ENV TZ="UTC" \
+ENV TZ="Asia/Shanghai" \
   TUNNEL_METRICS="0.0.0.0:49312" \
   TUNNEL_DNS_ADDRESS="0.0.0.0" \
   TUNNEL_DNS_PORT="5053" \
@@ -51,6 +51,8 @@ RUN echo -e " \
 no-resolv \n\
 server=127.0.0.1#5053 \n\
 strict-order \n\
+min-cache-ttl=3600 \n\
+max-cache-ttl=3600 \n\
 conf-dir=/etc/dnsmasq.d,*.conf "> /etc/dnsmasq.conf  
 
 RUN echo -e " /usr/local/bin/cloudflared proxy-dns & \n\
