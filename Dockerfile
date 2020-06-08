@@ -58,16 +58,14 @@ conf-dir=/etc/dnsmasq.d,*.conf "> /etc/dnsmasq.conf
 RUN echo -e " /usr/local/bin/cloudflared proxy-dns & \n\
     /usr/sbin/dnsmasq -C /etc/dnsmasq.conf & \n\
     while sleep 60; do \n\
-        ps aux |grep dnsmasq|grep -q -v grep  \n\
-        PROCESS_1_STATUS=$? \n\
-        ps aux |grep cloudflared|grep -q -v grep  \n\
-        PROCESS_2_STATUS=$? \n\
-        if [ $PROCESS_1_STATUS -ne 0 -o $PROCESS_2_STATUS -ne 0 ]; then \n\
-            echo 'One of the processes has already exited.' \n\
-        exit 1 \n\
-      fi \n\
-    done " > /start.sh
+        if ! ps aux |grep -q dnsmasq ;then \n\
+        	exit 1 \n\
+      	fi \n\
+        if ! ps aux |grep -q cloudflared ;then \n\
+        	exit 1 \n\
+      	fi \n\
+    done " > /start.sh && chmod +x /start.sh
 
 EXPOSE 53/udp
 
-ENTRYPOINT ["/bin/sh -c start.sh"]
+ENTRYPOINT ["/bin/sh","-c", "start.sh"]
