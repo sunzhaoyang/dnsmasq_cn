@@ -64,7 +64,7 @@ RUN echo -e " /usr/local/bin/cloudflared proxy-dns & \n\
         if ! ps aux |grep -q cloudflared ;then \n\
         	exit 1 \n\
       	fi \n\
-    done " > /start.sh && chmod +x /start.sh
+    done " > start.sh && chmod +x start.sh
 
 EXPOSE 53/udp
 
