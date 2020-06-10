@@ -55,6 +55,7 @@ log-queries \n\
 log-facility=- \n\
 min-cache-ttl=3600 \n\
 max-cache-ttl=3600 \n\
+cache-size=5000 \n\
 conf-dir=/etc/dnsmasq.d,*.conf "> /etc/dnsmasq.conf  
 
 RUN echo -e " /usr/local/bin/cloudflared proxy-dns & \n\
