@@ -52,6 +52,7 @@ no-resolv \n\
 server=127.0.0.1#5053 \n\
 strict-order \n\
 log-queries \n\
+log-facility=- \n\
 min-cache-ttl=3600 \n\
 max-cache-ttl=3600 \n\
 conf-dir=/etc/dnsmasq.d,*.conf "> /etc/dnsmasq.conf  
